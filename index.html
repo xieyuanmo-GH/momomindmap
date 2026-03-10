@@ -1,721 +1,535 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Yuanmo Xie - Portfolio</title>
+  <title>MOMOMINDMAP – Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="你的名字的个人网站与作品展示" />
+  <meta name="description" content="A selection of work by Yuammo Xie MOMO mindmap." />
+
+  <!-- Google Fonts（可以根据喜好替换） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0f172a;
-      --card-bg: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.08);
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --border-subtle: rgba(148, 163, 184, 0.5);
-      --radius-lg: 18px;
-      --radius-xl: 24px;
-      --shadow-soft: 0 30px 60px rgba(15, 23, 42, 0.85);
-      --shadow-subtle: 0 18px 40px rgba(15, 23, 42, 0.75);
+      --bg: #ffffff;
+      --text-main: #111111;
+      --text-muted: #666666;
+      --text-light: #999999;
+      --accent: #111111;
+      --border-soft: #e4e4e4;
+      --section-bg: #f5f5f5;
+      --max-width: 1120px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      background: radial-gradient(circle at 0% 0%, #1e3a8a 0, transparent 45%),
-                  radial-gradient(circle at 100% 0%, #0f766e 0, transparent 45%),
-                  radial-gradient(circle at 50% 140%, #7c2d12 0, #020617 55%);
+      font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
       color: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
 
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+
     .page {
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      padding: 24px 12px 40px;
-    }
-
-    .shell {
-      width: 100%;
-      max-width: 1080px;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
-      border-radius: 30px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 20px 20px 26px;
-      backdrop-filter: blur(26px);
-    }
-
-    @media (min-width: 768px) {
-      .shell { padding: 26px 28px 32px; }
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-      gap: 12px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #38bdf8, #1d4ed8);
-      border: 2px solid rgba(15, 23, 42, 0.9);
-      box-shadow: 0 8px 22px rgba(59, 130, 246, 0.65);
-    }
-
-    .brand-text {
-      display: flex;
       flex-direction: column;
-      gap: 2px;
     }
 
-    .brand-name {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+    .wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px 20px 60px;
     }
 
-    .brand-role {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 8px;
-      font-size: 12px;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: rgba(15, 23, 42, 0.9);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nav-links a:hover {
-      color: var(--text-main);
-      border-color: rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.98);
-    }
-
-    .nav-links a.primary {
-      border-color: rgba(56, 189, 248, 0.7);
-      background: radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.3), rgba(15, 23, 42, 0.98));
-      color: #e0f2fe;
-      box-shadow: 0 0 0 1px rgba(8, 47, 73, 0.7);
-    }
-
-    .nav-links a.primary:hover {
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 1px rgba(8, 47, 73, 0.95), 0 12px 32px rgba(8, 47, 73, 0.75);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      gap: 18px;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 768px) {
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
+    @media (min-width: 960px) {
+      .wrapper {
+        padding: 40px 40px 80px;
       }
     }
 
-    .panel {
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.32), transparent 52%),
-                  radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.3), transparent 52%),
-                  rgba(15, 23, 42, 0.97);
-      border-radius: var(--radius-xl);
-      padding: 22px 18px 20px;
-      border: 1px solid rgba(148, 163, 184, 0.65);
-      box-shadow: var(--shadow-subtle);
+    /* Header */
+
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .site-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 12px;
+    }
+
+    .nav-link {
       position: relative;
-      overflow: hidden;
     }
 
-    @media (min-width: 768px) {
-      .panel { padding: 26px 22px 22px; }
-    }
-
-    .panel::after {
+    .nav-link::after {
       content: "";
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background:
-        radial-gradient(circle at 0 120%, rgba(56, 189, 248, 0.12), transparent 58%),
-        radial-gradient(circle at 120% 0, rgba(129, 140, 248, 0.18), transparent 58%);
-      mix-blend-mode: screen;
-      opacity: 0.9;
-      pointer-events: none;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: #000;
+      transition: width 0.18s ease;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+
+    .hero {
+      margin-bottom: 40px;
+    }
+
+    .hero-banner {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      margin-bottom: 24px;
+    }
+
+    .hero-banner img {
+      width: 100%;
+      display: block;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .hero-text-group {
+      max-width: 620px;
+    }
+
+    .hero-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
       font-size: 11px;
-      padding: 4px 10px 4px 5px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.45), rgba(15, 23, 42, 0.98));
-      color: #e0f2fe;
+      color: var(--text-light);
       margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .pill-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a);
-      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.4), 0 0 0 5px rgba(22, 163, 74, 0.25);
     }
 
     .hero-title {
-      font-size: clamp(24px, 3vw, 30px);
-      letter-spacing: 0.02em;
-      margin: 4px 0 12px;
-      position: relative;
-      z-index: 1;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 10px;
     }
 
-    .hero-title span {
-      background: linear-gradient(to right, #e5e7eb, #bae6fd);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-      max-width: 500px;
-      line-height: 1.7;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-metadata {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 11px;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tag {
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      color: #e5e7eb;
-    }
-
-    .tag.soft {
-      background: rgba(15, 23, 42, 0.85);
-      border-style: dashed;
+    .hero-subtitle {
+      font-size: 14px;
       color: var(--text-muted);
     }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn {
-      border-radius: 999px;
-      padding: 7px 14px;
+    .hero-location {
       font-size: 12px;
-      border: 1px solid transparent;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.16s ease-out;
-      background: rgba(15, 23, 42, 0.96);
-      color: var(--text-main);
-    }
-
-    .btn-primary {
-      background: linear-gradient(to right, #38bdf8, #6366f1);
-      color: #e0f2fe;
-      border-color: rgba(15, 23, 42, 0.9);
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.65);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.78);
-    }
-
-    .btn-ghost {
-      border-color: rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.9);
       color: var(--text-muted);
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
     }
 
-    .btn-ghost:hover {
-      color: var(--text-main);
-      border-color: rgba(148, 163, 184, 0.95);
-      background: rgba(15, 23, 42, 0.98);
+    @media (max-width: 640px) {
+      .hero-location {
+        text-align: left;
+      }
     }
 
-    .hero-footnote {
+    /* Sections */
+
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+    }
+
+    .section-eyebrow {
       font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .projects {
-      margin-top: 12px;
-      position: relative;
-      z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-light);
+      margin-bottom: 6px;
     }
 
     .section-title {
-      font-size: 12px;
-      font-weight: 500;
-      color: #e5e7eb;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 10px 0;
     }
 
-    .section-title span.sub {
-      font-size: 11px;
+    .section-description {
+      font-size: 13px;
       color: var(--text-muted);
-      font-weight: 400;
+      margin-top: 10px;
+      max-width: 520px;
     }
+
+    /* Project list */
 
     .project-list {
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 32px;
+      margin-top: 24px;
     }
 
-    .project-card {
+    .project {
       display: grid;
-      grid-template-columns: minmax(0, 4.5fr) minmax(0, 3.5fr);
-      gap: 8px;
-      padding: 9px 9px;
-      border-radius: 14px;
-      background: radial-gradient(circle at 0 0, var(--accent-soft), rgba(15, 23, 42, 0.96));
-      border: 1px solid rgba(51, 65, 85, 0.85);
-      cursor: default;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 24px;
+      align-items: flex-start;
     }
 
-    @media (max-width: 640px) {
-      .project-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .project-main {
-      min-width: 0;
-    }
-
-    .project-title {
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 4px;
-    }
-
-    .project-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .project-desc {
-      font-size: 12px;
-      color: var(--text-main);
-      opacity: 0.95;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 6px;
-    }
-
-    .project-tag {
-      font-size: 10px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      color: var(--text-muted);
-      background: rgba(15, 23, 42, 0.96);
-    }
-
-    .project-aside {
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      align-items: flex-end;
-      justify-content: space-between;
-    }
-
-    @media (max-width: 640px) {
-      .project-aside {
-        align-items: flex-start;
-      }
-    }
-
-    .project-links {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .project-link {
-      font-size: 11px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      color: #e5e7eb;
-      text-decoration: none;
-      background: rgba(15, 23, 42, 0.96);
-    }
-
-    .project-link:hover {
-      border-color: #38bdf8;
-      color: #e0f2fe;
-    }
-
-    .profile-panel {
-      background: radial-gradient(circle at 100% 0, rgba(56, 189, 248, 0.32), transparent 52%),
-                  rgba(15, 23, 42, 0.97);
-      border-radius: var(--radius-xl);
-      padding: 18px 16px 16px;
-      border: 1px solid rgba(148, 163, 184, 0.65);
-      box-shadow: var(--shadow-subtle);
-      position: relative;
+    .project-media {
+      border-radius: 6px;
       overflow: hidden;
+      background: var(--section-bg);
+      border: 1px solid var(--border-soft);
     }
 
-    @media (min-width: 768px) {
-      .profile-panel { padding: 20px 18px 18px; }
-    }
-
-    .profile-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .profile-avatar {
-      width: 46px;
-      height: 46px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 0% 0%, #38bdf8, #4f46e5);
-      border: 2px solid rgba(15, 23, 42, 0.9);
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.7);
-    }
-
-    .profile-info {
+    .project-content {
       display: flex;
       flex-direction: column;
-      gap: 3px;
-    }
-
-    .profile-name {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .profile-role {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .profile-summary {
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .profile-section-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin: 12px 0 6px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .skill-pill {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      color: #e5e7eb;
-    }
-
-    .contact-block {
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px dashed rgba(148, 163, 184, 0.6);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 11px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-row {
-      display: flex;
-      justify-content: space-between;
       gap: 10px;
     }
 
-    .contact-label {
+    .project-eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-light);
+    }
+
+    .project-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .project-description {
+      font-size: 13px;
+      line-height: 1.6;
       color: var(--text-muted);
     }
 
-    .contact-value a {
-      color: #e0f2fe;
-      text-decoration: none;
+    .project-tags {
+      font-size: 11px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
-    .contact-value a:hover {
-      color: #7dd3fc;
+    /* Alternating layout */
+
+    .project--reverse {
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 3fr);
     }
 
-    .footer {
-      margin-top: 14px;
-      font-size: 10px;
-      color: var(--text-muted);
+    .project--reverse .project-media {
+      order: 2;
+    }
+
+    .project--reverse .project-content {
+      order: 1;
+    }
+
+    @media (max-width: 800px) {
+      .project,
+      .project--reverse {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .project--reverse .project-media,
+      .project--reverse .project-content {
+        order: initial;
+      }
+    }
+
+    /* Footer */
+
+    .site-footer {
+      border-top: 1px solid var(--border-soft);
+      margin-top: 32px;
+      padding-top: 16px;
+      font-size: 11px;
+      color: var(--text-light);
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 8px;
-      position: relative;
-      z-index: 1;
     }
 
-    .footer span {
-      opacity: 0.9;
+    .footer-link {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <div class="shell">
-      <header class="nav">
-        <div class="brand">
-          <div class="avatar"></div>
-          <div class="brand-text">
-            <div class="brand-name">你的名字</div>
-            <div class="brand-role">前端工程师 / 全栈 / 设计师等</div>
-          </div>
-        </div>
-        <nav class="nav-links">
-          <a href="#projects">项目</a>
-          <a href="#about">关于我</a>
-          <a href="#contact" class="primary">联系我</a>
+    <div class="wrapper">
+      <!-- 顶部导航 -->
+      <header class="site-header">
+        <div class="site-title">MOMOMINDMAP</div>
+        <nav class="site-nav">
+          <a class="nav-link" href="#serious-play">Serious Play</a>
+          <a class="nav-link" href="#future-cities">Future Cities</a>
+          <a class="nav-link" href="#visual-storytelling">Visual Storytelling</a>
         </nav>
       </header>
 
-      <main class="layout">
-        <!-- 左侧：简介 + 项目 -->
-        <section class="panel">
-          <div class="pill">
-            <span class="pill-dot"></span>
-            <span>目前状态：开放新的机会</span>
+      <!-- Hero 区域：上方大图 + 标题 -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-banner">
+          <!-- 把 images/hero-banner.jpg 换成你上传的头图 -->
+          <img src="images/hero-banner.jpg" alt="Welcome to MOMO Planet – collage of drawings and lettering">
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-text-group">
+            <div class="hero-eyebrow">A selection of work between 2014–2025</div>
+            <h1 class="hero-title" id="hero-title">WELCOME TO MOMO PLANET</h1>
+            <p class="hero-subtitle">
+              Architect, visual artist and educator exploring playful ways to make meaningful things.
+            </p>
           </div>
+          <div class="hero-location">
+            Based in Shanghai
+          </div>
+        </div>
+      </section>
 
-          <h1 class="hero-title">
-            <span>你好，我是 XXX，一名专注于 XX 的开发者。</span>
-          </h1>
-
-          <p class="hero-sub">
-            用一两句话说明你在做什么、擅长什么、想要什么样的机会。尽量具体，比如：擅长现代前端（React / Vue）、小程序，关注性能优化与细节体验。
+      <!-- Section 1: Serious Play / Board Games 等 -->
+      <section class="section" id="serious-play">
+        <header class="section-header">
+          <div class="section-eyebrow">Serious Play for Sustainable Development Goals</div>
+          <h2 class="section-title">Serious Play</h2>
+          <p class="section-description">
+            Board games, workshops and visual tools that invite people of all ages to engage with climate action,
+            circular economy and urban sustainability in a playful way.
           </p>
+        </header>
 
-          <div class="hero-metadata">
-            <div class="tag">所在城市 / 可远程</div>
-            <div class="tag soft">主要方向：前端 / 全栈 / 移动 / UI 等</div>
-          </div>
-
-          <div class="cta-row">
-            <a href="#projects" class="btn btn-primary">
-              <span>查看作品集</span>
-            </a>
-            <a href="#contact" class="btn btn-ghost">
-              <span>下载/查看简历（可选）</span>
-            </a>
-          </div>
-
-          <div class="hero-footnote">
-            最近在做：简单写一件你最近在做/学的事，如“正在用 Next.js 重构个人项目 / 学习 Three.js 做 3D 动效”。
-          </div>
-
-          <section class="projects" id="projects">
-            <div class="section-title">
-              <span>代表项目</span>
-              <span class="sub">挑 3–4 个最有代表性的作品</span>
+        <div class="project-list">
+          <!-- 项目 1 -->
+          <article class="project">
+            <div class="project-media">
+              <!-- 换成你自己的图片 -->
+              <img src="images/project-climate-game.jpg" alt="Act for Climate Change board game materials and players">
             </div>
-
-            <div class="project-list">
-              <!-- 项目 1 -->
-              <article class="project-card">
-                <div class="project-main">
-                  <div class="project-title">项目名称 A — 例如：个人学习管理平台</div>
-                  <div class="project-meta">角色：独立开发者 ｜ 时间：2024</div>
-                  <p class="project-desc">
-                    简要说明：这是一个解决什么问题的网站/应用，你负责了哪些部分（前端 / 后端 / 设计），有哪些亮点（性能、交互、功能等）。
-                  </p>
-                  <div class="project-tags">
-                    <span class="project-tag">React</span>
-                    <span class="project-tag">TypeScript</span>
-                    <span class="project-tag">Node.js</span>
-                  </div>
-                </div>
-                <div class="project-aside">
-                  <div>一句话结果/数据（可选）：提升了什么、服务了多少用户等。</div>
-                  <div class="project-links">
-                    <a class="project-link" href="#" target="_blank" rel="noreferrer">在线预览</a>
-                    <a class="project-link" href="#" target="_blank" rel="noreferrer">GitHub 源码</a>
-                  </div>
-                </div>
-              </article>
-
-              <!-- 项目 2 -->
-              <article class="project-card">
-                <div class="project-main">
-                  <div class="project-title">项目名称 B — 例如：电商落地页</div>
-                  <div class="project-meta">角色：前端开发 ｜ 时间：2023</div>
-                  <p class="project-desc">
-                    重点写你做的事情：比如设计并实现响应式页面，接入支付接口，做了动画和数据埋点等。
-                  </p>
-                  <div class="project-tags">
-                    <span class="project-tag">Vue 3</span>
-                    <span class="project-tag">Tailwind CSS</span>
-                  </div>
-                </div>
-                <div class="project-aside">
-                  <div>可写一句“与设计/产品协作完成，从0到1上线”。</div>
-                  <div class="project-links">
-                    <a class="project-link" href="#" target="_blank" rel="noreferrer">在线预览</a>
-                    <a class="project-link" href="#" target="_blank" rel="noreferrer">GitHub 源码</a>
-                  </div>
-                </div>
-              </article>
-
-              <!-- 可继续添加更多项目卡片 -->
+            <div class="project-content">
+              <div class="project-eyebrow">Serious Play for Sustainable Development Goals</div>
+              <h3 class="project-title">ACT FOR CLIMATE CHANGE BOARD GAME</h3>
+              <div class="project-meta">Board Game · Community Workshops · 2019–Now</div>
+              <p class="project-description">
+                As climate change intensifies, communities need new ways to discuss and imagine responses together.
+                I designed a collaborative board game that combines storytelling, systems thinking and playful prompts
+                to help residents explore actions they can take in their daily lives, while strengthening local support
+                networks.
+              </p>
+              <div class="project-tags">
+                Co-creation · Community Engagement · Climate Action
+              </div>
             </div>
-          </section>
-        </section>
+          </article>
 
-        <!-- 右侧：关于我 + 技能 + 联系方式 -->
-        <aside class="profile-panel" id="about">
-          <div class="profile-header">
-            <div class="profile-avatar"></div>
-            <div class="profile-info">
-              <div class="profile-name">你的名字</div>
-              <div class="profile-role">前端 / 全栈 / 其他角色</div>
+          <!-- 项目 2 -->
+          <article class="project">
+            <div class="project-media">
+              <img src="images/project-trash-flip.jpg" alt="Trash FL!P card game and workshop photos">
             </div>
-          </div>
+            <div class="project-content">
+              <div class="project-eyebrow">Serious Play for Sustainable Development Goals</div>
+              <h3 class="project-title">TRASH FL!P CARD GAME</h3>
+              <div class="project-meta">Gamified Workshops · 2019–Now</div>
+              <p class="project-description">
+                Trash FL!P is a fast-paced card game and workshop format developed to rethink waste sorting in China.
+                Through playful missions and storytelling, participants discover where their trash goes, what systems
+                are behind it, and how they can shift everyday habits. The game has been used in schools, NGOs and
+                public events.
+              </p>
+              <div class="project-tags">
+                Game Design · Environmental Education · Workshop Design
+              </div>
+            </div>
+          </article>
 
-          <p class="profile-summary">
-            用 2–3 句话介绍你：目前的经验（应届/几年经验）、擅长的方向、做过哪些类型的项目（B 端后台、C 端网站、小程序、移动端等），顺便写一句你的目标（例如“希望加入重视产品体验的团队”）。
+          <!-- 项目 3 -->
+          <article class="project">
+            <div class="project-media">
+              <img src="images/project-waste-infographic.jpg" alt="Waste management infographic and workshop snapshots">
+            </div>
+            <div class="project-content">
+              <div class="project-eyebrow">Serious Play for Sustainable Development Goals</div>
+              <h3 class="project-title">WASTE MANAGEMENT INFOGRAPHIC</h3>
+              <div class="project-meta">Infographic · Research Collaboration · 2018–2020</div>
+              <p class="project-description">
+                To better understand waste management in China, I collaborated with NGOs and researchers to map
+                the journey of waste from households to treatment facilities. The result is an illustrated
+                infographic used in exhibitions, public talks and school workshops to spark conversations about
+                circular systems.
+              </p>
+              <div class="project-tags">
+                Systems Mapping · Infographic · Public Engagement
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Section 2: Future Cities -->
+      <section class="section" id="future-cities">
+        <header class="section-header">
+          <div class="section-eyebrow">Reimagine the future</div>
+          <h2 class="section-title">Future Cities</h2>
+          <p class="section-description">
+            Speculative design projects and architectural research exploring how we might live together in changing
+            urban environments.
           </p>
+        </header>
 
-          <div class="profile-section-title">技能栈</div>
-          <div class="skill-list">
-            <span class="skill-pill">JavaScript / TypeScript</span>
-            <span class="skill-pill">React / Vue</span>
-            <span class="skill-pill">HTML / CSS / 响应式布局</span>
-            <span class="skill-pill">Node.js / Express（如适用）</span>
-            <span class="skill-pill">Git / GitHub</span>
-          </div>
-
-          <div class="profile-section-title">我擅长</div>
-          <div class="skill-list">
-            <span class="skill-pill">还原设计稿 & 动效细节</span>
-            <span class="skill-pill">性能与体验优化</span>
-            <span class="skill-pill">与设计/产品沟通协作</span>
-          </div>
-
-          <div class="profile-section-title" id="contact">联系我</div>
-          <div class="contact-block">
-            <div class="contact-row">
-              <div class="contact-label">Email</div>
-              <div class="contact-value">
-                <a href="mailto:you@example.com">you@example.com</a>
+        <div class="project-list">
+          <!-- 项目 4：Redesign unfinished buildings -->
+          <article class="project project--reverse">
+            <div class="project-media">
+              <img src="images/project-ghost-city.jpg" alt="Vertical farming proposal in an unfinished high-rise">
+            </div>
+            <div class="project-content">
+              <div class="project-eyebrow">Reimagine the future</div>
+              <h3 class="project-title">REDESIGN UNFINISHED BUILDINGS</h3>
+              <div class="project-meta">Master Thesis · 2015</div>
+              <p class="project-description">
+                This master's thesis looks at a “ghost city” project in Tianjin and asks what could happen if
+                speculative real estate were re-occupied by those who need housing the most. The proposal turns
+                an unfinished high-rise into a vertical farm combined with affordable housing for migrant workers.
+              </p>
+              <div class="project-tags">
+                Ghost Cities · Adaptive Reuse · Vertical Farming
               </div>
             </div>
-            <div class="contact-row">
-              <div class="contact-label">GitHub</div>
-              <div class="contact-value">
-                <a href="https://github.com/yourname" target="_blank" rel="noreferrer">github.com/yourname</a>
-              </div>
-            </div>
-            <div class="contact-row">
-              <div class="contact-label">LinkedIn / 微信（可选）</div>
-              <div class="contact-value">
-                <span>写上你的 LinkedIn 链接或“可加微信：xxxxxx”</span>
-              </div>
-            </div>
-          </div>
+          </article>
 
-          <footer class="footer">
-            <span>© <span id="year"></span> 你的名字</span>
-            <span>本站托管于 GitHub Pages（免费）</span>
-          </footer>
-        </aside>
-      </main>
+          <!-- 项目 5：Capsule way of living -->
+          <article class="project">
+            <div class="project-media">
+              <img src="images/project-capsule-living.jpg" alt="Capsule living diagrams and architectural drawings">
+            </div>
+            <div class="project-content">
+              <div class="project-eyebrow">Reimagine the future</div>
+              <h3 class="project-title">CAPSULE WAY OF LIVING</h3>
+              <div class="project-meta">Undergraduate Thesis · 2013</div>
+              <p class="project-description">
+                Exploring architecture as a product, this project imagines modular capsule units that can be stacked
+                and rearranged like building blocks. It is both a proposal for compact living in megacities and a
+                metaphor for how people negotiate personal space under pressure.
+              </p>
+              <div class="project-tags">
+                Compact Living · Modular Design · Speculative Architecture
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Section 3: Visual Storytelling -->
+      <section class="section" id="visual-storytelling">
+        <header class="section-header">
+          <div class="section-eyebrow">Visual Storytelling</div>
+          <h2 class="section-title">Visual Storytelling</h2>
+          <p class="section-description">
+            From live visual recording to comics and zines, I use drawing as a way to listen, think and tell
+            stories together with communities, institutions and organizations.
+          </p>
+        </header>
+
+        <div class="project-list">
+          <!-- 项目 6：BIX / Visual facilitation -->
+          <article class="project">
+            <div class="project-media">
+              <img src="images/project-bix-open-day.jpg" alt="Colorful visual facilitation graphic for BIX Open Day">
+            </div>
+            <div class="project-content">
+              <div class="project-eyebrow">Visual Recording & Facilitation</div>
+              <h3 class="project-title">BIX OPEN DAY VISUAL FACILITATION</h3>
+              <div class="project-meta">Graphic Facilitation · 2018–2025</div>
+              <p class="project-description">
+                For events such as BIX Open Day and international forums, I created large-scale visual maps that
+                capture conversations in real time. These drawings help participants see connections, remember key
+                ideas and continue discussions long after the event ends.
+              </p>
+              <div class="project-tags">
+                Live Drawing · Event Facilitation · Graphic Recording
+              </div>
+            </div>
+          </article>
+
+          <!-- 你可以继续按这个结构添加更多项目 -->
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <span>© <span id="year"></span> MOMOMINDMAP</span>
+        <span>
+          Selected works · For inquiries:
+          <a class="footer-link" href="mailto:you@example.com">you@example.com</a>
+        </span>
+      </footer>
     </div>
   </div>
 
